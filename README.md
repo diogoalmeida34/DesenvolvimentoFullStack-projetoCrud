@@ -1,3 +1,101 @@
+# CRUD Relacional com Laravel, MySQL e AdminLTE
+
+Projeto desenvolvido como parte da disciplina **GRUFSST - Desenvolvimento Full-Stack**, com o objetivo de aplicar os conceitos de desenvolvimento web full-stack utilizando o framework Laravel no backend e o template AdminLTE no frontend.
+
+---
+
+## 🎯 Objetivo
+
+Criar um sistema CRUD com relacionamentos entre entidades, usando boas práticas de desenvolvimento, autenticação, e uma interface administrativa moderna e responsiva.
+
+---
+
+## 🧰 Tecnologias Utilizadas
+
+- **PHP 8+**
+- **Laravel 10+**
+- **MySQL**
+- **AdminLTE 3**
+- **Blade** (sistema de templates do Laravel)
+- **Bootstrap 4** (integrado via AdminLTE)
+- **Composer & NPM**
+
+---
+
+## ⚙️ Funcionalidades
+
+- Autenticação de usuários
+- CRUD completo com validações (Create, Read, Update, Delete)
+- Relacionamentos entre tabelas:
+  - Exemplo: `Usuários` → possuem vários `Posts`
+  - `Posts` → pertencem a uma `Categoria`
+- Listagens com paginação e filtros
+- Painel administrativo com AdminLTE
+- Migrações e seeders para facilitar testes
+
+---
+
+## 🧱 Estrutura do Projeto
+```bash
+app/
+├── Models/
+│ ├── User.php
+│ ├── Post.php
+│ └── Category.php
+├── Http/
+│ └── Controllers/
+│ ├── PostController.php
+│ └── CategoryController.php
+resources/
+└── views/
+├── adminlte/
+├── posts/
+└── categories/
+```
+---
+
+## 🛠️ Instalação e Configuração do Projeto
+
+1. Clone o repositório
+```bash
+git clone https://github.com/diogoalmeida34/DesenvolvimentoFullStack-projetoCrud.git
+cd DesenvolvimentoFullStack-projetoCrud
+```
+
+2. Instale as dependências (se necessário)
+```bash
+composer install
+npm install && npm run dev
+```
+
+3. Configure o ambiente
+Configure o arquivo `.env`:
+Abra o arquivo `.env` e edite os dados de conexão com o banco:
+
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=seu_banco
+DB_USERNAME=seu_usuario
+DB_PASSWORD=sua_senha
+```
+
+4. Inicie o servidor:
+
+```bash
+php artisan serve
+```
+
+Acesse no navegador: ```http://localhost:8000```
+
+---
+
+## 📜 Licença
+Este projeto está licenciado sob a MIT License.
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -7,60 +105,19 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Sobre o Laravel
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+O Laravel é um framework para aplicações web com sintaxe expressiva e elegante. Acreditamos que o desenvolvimento deve ser uma experiência agradável e criativa para ser verdadeiramente gratificante. O Laravel elimina a dor de cabeça do desenvolvimento, facilitando tarefas comuns usadas em muitos projetos web, como:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [Mecanismo de roteamento simples e rápido](https://laravel.com/docs/routing).
+- [Contêiner poderoso para injeção de dependências](https://laravel.com/docs/container).
+- Múltiplos back-ends para armazenamento de [sessão](https://laravel.com/docs/session) e [cache](https://laravel.com/docs/cache).
+- [ORM de banco de dados](https://laravel.com/docs/eloquent) expressivo e intuitivo.
+- [Migrações de esquemas](https://laravel.com/docs/migrations) agnóstico em relação a bancos de dados.
 
-## Learning Laravel
+- [Processamento robusto de tarefas em segundo plano](https://laravel.com/docs/queues).
+- [Transmissão de eventos em tempo real](https://laravel.com/docs/broadcasting).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+O Laravel é acessível, poderoso e fornece as ferramentas necessárias para aplicações grandes e robustas.
