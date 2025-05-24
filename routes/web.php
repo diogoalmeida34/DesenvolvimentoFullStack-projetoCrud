@@ -22,4 +22,5 @@ use App\Http\Controllers\CategoriaController;
 
 Route::resource('categorias', CategoriaController::class);
 
+Route::get('categorias/{categoria}/confirm-delete', [CategoriaController::class, 'confirmDelete'])->name('categorias.confirm-delete');
 

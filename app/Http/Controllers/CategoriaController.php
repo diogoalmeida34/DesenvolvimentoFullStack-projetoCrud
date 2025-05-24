@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoriaController extends Controller
 {
@@ -29,8 +30,20 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        Categoria::create($request->all());
-        return redirect()->route('categorias.index');
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $data = $request->only('nome');
+
+        if ($request->hasFile('imagem')) {
+            $data['imagem'] = $request->file('imagem')->store('categorias', 'public');
+        }
+
+        Categoria::create($data);
+
+        return redirect()->route('categorias.index')->with('success', 'Categoria criada com sucesso!');
     }
 
     /**
@@ -56,9 +69,24 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        $request->validate(['nome' => 'required']);
-        $categoria->update($request->all());
-        return redirect()->route('categorias.index');
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $data = $request->only('nome');
+
+        if ($request->hasFile('imagem')) {
+            // Apaga a imagem antiga (se existir)
+        if ($categoria->imagem && Storage::disk('public')->exists($categoria->imagem)) {
+            Storage::disk('public')->delete($categoria->imagem);
+        }
+            $data['imagem'] = $request->file('imagem')->store('categorias', 'public');
+        }
+
+        $categoria->update($data);
+
+        return redirect()->route('categorias.index')->with('success', 'Categoria atualizada com sucesso!');
     }
 
     /**
@@ -68,5 +96,10 @@ class CategoriaController extends Controller
     {
         $categoria->delete();
         return redirect()->route('categorias.index');
+    }
+
+    public function confirmDelete(Categoria $categoria)
+    {
+        return view('categorias.confirm_delete', compact('categoria'));
     }
 }
