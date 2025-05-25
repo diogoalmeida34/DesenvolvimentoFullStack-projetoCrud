@@ -6,7 +6,7 @@ Projeto desenvolvido como parte da disciplina **GRUFSST - Desenvolvimento Full-S
 
 ## 🎯 Objetivo
 
-Criar um sistema CRUD com relacionamentos entre entidades, usando boas práticas de desenvolvimento, autenticação, e uma interface administrativa moderna e responsiva.
+Criar um sistema CRUD simples de cadastro de **categorias**, usando boas práticas de desenvolvimento e uma interface administrativa moderna e responsiva.
 
 ---
 
@@ -24,33 +24,38 @@ Criar um sistema CRUD com relacionamentos entre entidades, usando boas práticas
 
 ## ⚙️ Funcionalidades
 
-- Autenticação de usuários
-- CRUD completo com validações (Create, Read, Update, Delete)
-- Relacionamentos entre tabelas:
-  - Exemplo: `Usuários` → possuem vários `Posts`
-  - `Posts` → pertencem a uma `Categoria`
-- Listagens com paginação e filtros
-- Painel administrativo com AdminLTE
-- Migrações e seeders para facilitar testes
+- Validação de dados
+- Upload e exibição de imagens
+- Confirmação antes de deletar
+- Layout com [AdminLTE](https://adminlte.io/)
 
 ---
 
 ## 🧱 Estrutura do Projeto
 ```bash
-app/
-├── Models/
-│ ├── User.php
-│ ├── Post.php
-│ └── Category.php
-├── Http/
-│ └── Controllers/
-│ ├── PostController.php
-│ └── CategoryController.php
-resources/
-└── views/
-├── adminlte/
-├── posts/
-└── categories/
+DesenvolvimentoFullStack-projetoCrud/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   │       └── CategoriaController.php
+│   └── Models/
+│       └── Categoria.php
+├── database/
+│   └── migrations/
+│       └── 2025_05_21_232359_create_categorias_table.php
+├── resources/
+│   └── views/
+│       ├── categorias/
+│       │   └──  confirm_delete.blade.php
+│       │   └── create.blade.php
+│       │   └── edit.blade.php
+│       │   └── index.blade.php
+│       └── layouts/
+│           └── app.blade.php
+├── routes/
+│   └── web.php
+├── .env
+└── README.md
 ```
 ---
 
@@ -87,7 +92,7 @@ DB_PASSWORD=sua_senha
 php artisan serve
 ```
 
-Acesse no navegador: ```http://localhost:8000```
+Acesse no navegador: ```http://localhost:8000/categorias/```
 
 ---
 
